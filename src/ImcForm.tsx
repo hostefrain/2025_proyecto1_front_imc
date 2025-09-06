@@ -27,7 +27,7 @@ function ImcForm() {
     }
 
     try {
-      const response = await axios.post(`${API_URL}/imc/calcular`, {
+      const response = await axios.post(`${API_URL}imc/calcular`, {
         altura: alturaNum,
         peso: pesoNum,
       });
