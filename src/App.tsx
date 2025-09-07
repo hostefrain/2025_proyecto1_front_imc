@@ -1,13 +1,13 @@
-
+import Layout from './components/Layout'
 import ImcForm from './ImcForm'
 
 function App() {
 
   return (
     <>
-     <div>
+     <Layout>
       <ImcForm />
-    </div>
+    </Layout>
     </>
   )
 }

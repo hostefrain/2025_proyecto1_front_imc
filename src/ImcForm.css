@@ -1,0 +1,138 @@
+/* Estilos principales del contenedor y tipografía */
+.imc-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #E0F7FA;
+  background-color: #0A192F;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.imc-form-title {
+  font-size: 2.5em;
+  font-weight: 600;
+  color: #B3E5FC;
+  text-align: center;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  animation: slideInFromTop 0.8s ease-out;
+}
+
+@keyframes slideInFromTop {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.imc-form-subtitle {
+  font-size: 1.2em;
+  color: #81D4FA;
+  margin-bottom: 0.5rem;
+}
+
+/* Estilos de los inputs */
+.input-group {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid #4FC3F7;
+  border-radius: 8px;
+  color: #B3E5FC;
+  font-size: 1em;
+  transition: all 0.3s ease;
+}
+
+.input-group:focus {
+  outline: none;
+  border-color: #03A9F4;
+  box-shadow: 0 0 10px rgba(3, 169, 244, 0.5);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Estilos del botón */
+.calculate-button {
+  width: 100%;
+  padding: 1rem;
+  background-color: #03A9F4;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.calculate-button:hover {
+  background-color: #0288D1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+.calculate-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos de los resultados y errores */
+.result-container {
+  margin-top: 2rem;
+  text-align: center;
+  padding: 1rem 2rem;
+  background-color: rgba(66, 165, 245, 0.2);
+  border: 1px solid #4FC3F7;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  animation: scaleIn 0.5s ease-out;
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.result-title {
+  font-size: 1.5em;
+  font-weight: 500;
+  margin: 0.5rem 0;
+  color: #B3E5FC;
+}
+
+/* Animación y estilo para el mensaje de error */
+.error-message {
+  color: #EF5350;
+  margin-top: 1rem;
+  font-size: 1em;
+  text-align: center;
+  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translateX(-3px); }
+  20%, 80% { transform: translateX(3px); }
+  30%, 50%, 70% { transform: translateX(-3px); }
+  40%, 60% { transform: translateX(3px); }
+}
+
+/* Para dispositivos móviles */
+@media (max-width: 600px) {
+  .imc-form-title {
+    font-size: 2em;
+  }
+}

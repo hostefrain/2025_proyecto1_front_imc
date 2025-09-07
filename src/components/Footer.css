@@ -1,0 +1,117 @@
+/* Footer.css - Paleta Azul Oscuro */
+.app-footer {
+  position: relative;
+  background: rgba(30, 58, 138, 0.08);
+  backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(96, 165, 250, 0.15);
+}
+
+/* Efecto de brillo sutil */
+.footer-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(37, 99, 235, 0.1), transparent);
+}
+
+.footer-content {
+  position: relative;
+  z-index: 10;
+  padding: 1.5rem;
+}
+
+.footer-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Logo/Info del footer */
+.footer-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: linear-gradient(to right, #1e40af, #2563eb);
+  border-radius: 0.5rem;
+}
+
+.footer-logo svg {
+  width: 1rem;
+  height: 1rem;
+  color: white;
+}
+
+.footer-text {
+  text-align: center;
+}
+
+.footer-copyright {
+  color: rgba(219, 234, 254, 0.9);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.footer-subtitle {
+  color: rgba(191, 219, 254, 0.6);
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+/* Links sociales decorativos */
+.footer-social {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-social-link {
+  width: 1.5rem;
+  height: 1.5rem;
+  background: rgba(96, 165, 250, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  padding: 0;
+}
+
+.footer-social-link:hover {
+  background: rgba(96, 165, 250, 0.25);
+  transform: translateY(-2px);
+}
+
+.footer-social-link svg {
+  width: 0.75rem;
+  height: 0.75rem;
+  color: rgba(191, 219, 254, 0.8);
+}
+
+/* Barra decorativa */
+.footer-divider {
+  width: 4rem;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #3b82f6, transparent);
+  border: none;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .footer-content {
+    padding: 1rem;
+  }
+  
+  .footer-social {
+    gap: 0.75rem;
+  }
+}

@@ -1,0 +1,117 @@
+/* Header.css - Paleta Azul Oscuro */
+.app-header {
+  position: relative;
+  background: rgba(30, 58, 138, 0.1);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(96, 165, 250, 0.2);
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.1);
+}
+
+/* Efecto de brillo en el header */
+.header-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, transparent, rgba(96, 165, 250, 0.05), transparent);
+}
+
+.header-content {
+  position: relative;
+  z-index: 10;
+  padding: 1.5rem;
+}
+
+.header-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Icono del header */
+.header-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: linear-gradient(to right, #1e40af, #2563eb);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.3);
+}
+
+.header-icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: white;
+}
+
+/* Texto del header */
+.header-text {
+  text-align: center;
+}
+
+.header-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  background: linear-gradient(to right, #ffffff, #dbeafe, #bfdbfe);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  margin: 0;
+}
+
+.header-subtitle {
+  color: rgba(191, 219, 254, 0.8);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Indicadores decorativos */
+.header-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.header-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.header-dot-1 {
+  background-color: #2563eb;
+}
+
+.header-dot-2 {
+  background-color: #3b82f6;
+  animation-delay: 0.5s;
+}
+
+.header-dot-3 {
+  background-color: #60a5fa;
+  animation-delay: 1s;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .header-content {
+    padding: 1rem;
+  }
+  
+  .header-title {
+    font-size: 1.5rem;
+  }
+  
+  .header-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .header-icon svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}

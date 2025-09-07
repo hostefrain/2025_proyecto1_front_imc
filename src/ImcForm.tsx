@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import "./ImcForm.css"
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -42,13 +43,13 @@ function ImcForm() {
   };
 
   return (
-    <div>
+    <div className="mc-form-container">
       <div>
-        <h1>Calculadora de IMC</h1>
+        <h1 className="imc-form-title">Calculadora de IMC</h1>
         <form onSubmit={handleSubmit}>
           <div>
-            <label>Altura (m):</label>
-            <input
+            <label className="imc-form-subtitle">Altura (m):</label>
+            <input className="input-group"
               type="number"
               value={altura}
               onChange={(e) => setAltura(e.target.value)}
@@ -57,21 +58,21 @@ function ImcForm() {
             />
           </div>
           <div>
-            <label>Peso (kg):</label>
-            <input
+            <label className="imc-form-subtitle">Peso (kg):</label>
+            <input className="input-group"
               type="number"
               value={peso}
               onChange={(e) => setPeso(e.target.value)}
               min="1"
             />
           </div>
-          <button type="submit">Calcular</button>
+          <button className="calculate-button" type="submit">Calcular</button>
         </form>
 
         {resultado && (
-          <div>
-            <p>IMC: {resultado.imc.toFixed(2)}</p>
-            <p>Categoría: {resultado.categoria}</p>
+          <div className="result-container">
+            <p className="result-title">IMC: {resultado.imc.toFixed(2)}</p>
+            <p className="result-title">Categoría: {resultado.categoria}</p>
           </div>
         )}
 
