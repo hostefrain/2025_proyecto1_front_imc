@@ -77,6 +77,7 @@ function ImcForm() {
               value={peso}
               onChange={(e) => setPeso(e.target.value)}
               min="1"
+              step="0.01"
             />
           </div>
           <button className="calculate-button" type="submit">Calcular</button>
