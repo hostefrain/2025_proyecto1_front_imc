@@ -27,11 +27,24 @@ function ImcForm() {
       return;
     }
 
+    if (pesoNum > 500) {
+      setError("El peso ingresado no puede superar los 500 kilogramos(kg).");
+      setResultado(null);
+      return
+    }
+
+    if (alturaNum > 3) {
+      setError("La altura ingresada no puede superar los 3 metros(m).")
+      setResultado(null);
+      return
+    }
+
     try {
       const response = await axios.post(`${API_URL}imc/calcular`, {
         altura: alturaNum,
         peso: pesoNum,
       });
+
       setResultado(response.data);
       setError("");
     } catch (err) {
