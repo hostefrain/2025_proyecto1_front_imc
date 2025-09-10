@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import "./ImcForm.css"
+import { FormValidator } from "./FormValidator";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -19,25 +20,15 @@ function ImcForm() {
     e.preventDefault();
 
     const alturaNum = parseFloat(altura);
-    const pesoNum = parseFloat(peso);
+    const pesoNum = parseFloat(peso);    
 
-    if (isNaN(alturaNum) || isNaN(pesoNum) || alturaNum <= 0 || pesoNum <= 0) {
-      setError("Por favor, ingresa valores válidos (positivos y numéricos).");
+    const validationError = FormValidator(alturaNum, pesoNum)
+
+    if (validationError) {
+      setError(validationError);
       setResultado(null);
       return;
-    }
-
-    if (pesoNum > 500) {
-      setError("El peso ingresado no puede superar los 500 kilogramos(kg).");
-      setResultado(null);
-      return
-    }
-
-    if (alturaNum > 3) {
-      setError("La altura ingresada no puede superar los 3 metros(m).")
-      setResultado(null);
-      return
-    }
+    };
 
     try {
       const response = await axios.post(`${API_URL}imc/calcular`, {
@@ -66,8 +57,6 @@ function ImcForm() {
               type="number"
               value={altura}
               onChange={(e) => setAltura(e.target.value)}
-              step="0.01"
-              min="0.1"
             />
           </div>
           <div>
@@ -76,8 +65,6 @@ function ImcForm() {
               type="number"
               value={peso}
               onChange={(e) => setPeso(e.target.value)}
-              min="1"
-              step="0.01"
             />
           </div>
           <button className="calculate-button" type="submit">Calcular</button>

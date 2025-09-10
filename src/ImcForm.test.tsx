@@ -2,45 +2,34 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import axios from "axios";
 import ImcForm from "./ImcForm";
+import { FormValidator } from "./FormValidator";
 
-// función 
-function calcularIMC(peso: number, altura: number) {
-
-  if (peso > 500) {
-    return "El peso ingresado no puede superar los 500 kilogramos(kg).";
-  }
-
-  if (altura > 3) {
-    return "La altura ingresada no puede superar los 3 metros(m).";
-  }
-
-  if (peso <= 0 || altura <= 0) {
-    return "Por favor, ingresa valores válidos (positivos y numéricos).";
-  }
-
-  return peso / (altura * altura)
-}
-
-describe("Función calcularIMC", () => {
-  it("debería calcular el IMC correctamente", () => {
-    const resultado = calcularIMC(70, 1.75);
-    expect(resultado).toBeCloseTo(22.86, 2);
+//Test de FromValidator.
+describe("FormValidator", () => {
+  it("retorna error si el peso es mayor a 500", () => {
+    const error = FormValidator(1.75 , 501);
+    expect(error).toBe("El peso debe ser un valor positivo entre 0 y 500 kilogramos. Por favor, ingrese valores válidos.");
   });
 
-    it("debería mostara error cuando del peso supere 500kg", () => {
-    const resultado = calcularIMC(501, 1.75);
-    expect(resultado).toBe("El peso ingresado no puede superar los 500 kilogramos(kg).");
+  it("retorna error si la altura es mayor a 3", () => {
+    const error = FormValidator(3.1, 90);
+    expect(error).toBe("La altura debe ser un valor positivo entre 0 y 3 metros. Por favor, ingrese valores válidos.");
   });
 
-  it("debería mostrar error cuando la altura supere 3m", () => {
-    const resultado = calcularIMC(90, 3.01);
-    expect(resultado).toBe("La altura ingresada no puede superar los 3 metros(m).")
-  })
+  it("retorna error si altura <= 0", () => {
+    const error = FormValidator(0, 2);
+    expect(error).toBe("La altura debe ser un valor positivo entre 0 y 3 metros. Por favor, ingrese valores válidos.");
+  });
 
-  it("debería mostrar erro cuando la altura o el peso se menor o igual a 0.", () => {
-    const resultado = calcularIMC(0, 2);
-    expect(resultado).toBe("Por favor, ingresa valores válidos (positivos y numéricos).")
-  })
+    it("retorna error si peso <= 0", () => {
+    const error = FormValidator(2, 0);
+    expect(error).toBe("El peso debe ser un valor positivo entre 0 y 500 kilogramos. Por favor, ingrese valores válidos.");
+  });
+
+  it("retorna null si los datos son correctos", () => {
+    const error = FormValidator(1.75, 85);
+    expect(error).toBeNull();
+  });
 
 });
 
