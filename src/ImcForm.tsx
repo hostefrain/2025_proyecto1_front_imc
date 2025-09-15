@@ -4,6 +4,7 @@ import "./ImcForm.css"
 import { FormValidator } from "./FormValidator";
 
 const API_URL = import.meta.env.VITE_API_URL;
+console.log('API_URL:', API_URL);
 
 interface ImcResult {
   id: number;
@@ -33,7 +34,7 @@ function ImcForm() {
       setResultado(null);
       return;
     };
-
+    
     try {
       const response = await axios.post(`${API_URL}imc/calcular`, {
         altura: alturaNum,
