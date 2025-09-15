@@ -6,8 +6,12 @@ import { FormValidator } from "./FormValidator";
 const API_URL = import.meta.env.VITE_API_URL;
 
 interface ImcResult {
-  imc: number;
+  id: number;
+  altura: number;
+  peso: number;
+  imcValor: number;
   categoria: string;
+  fechaHora: Date;
 }
 
 function ImcForm() {
@@ -36,9 +40,11 @@ function ImcForm() {
         peso: pesoNum,
       });
 
+      console.log('Respuesta del backend:', response.data); // 👈 Agrega esto
       setResultado(response.data);
       setError("");
     } catch (err) {
+      console.error('Error completo:', err); // 👈 Y esto también
       setError(
         "Error al calcular el IMC. Verifica si el backend está corriendo."
       );
@@ -72,8 +78,14 @@ function ImcForm() {
 
         {resultado && (
           <div className="result-container">
-            <p className="result-title">IMC: {resultado.imc.toFixed(2)}</p>
+            <p className="result-title">Id: {resultado.id}</p>
+            <p className="result-title">altura: {resultado.altura}</p>
+            <p className="result-title">peso: {resultado.peso}</p>
+            <p className="result-title">IMC: {resultado.imcValor.toFixed(2)}</p>
             <p className="result-title">Categoría: {resultado.categoria}</p>
+            <p className="result-title">
+              Fecha: {new Date(resultado.fechaHora).toLocaleDateString('es-AR')}
+            </p>    
           </div>
         )}
 
