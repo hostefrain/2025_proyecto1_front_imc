@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './ImcData.css'; // Archivo de estilos que crearemos
+import './ImcData.css';
+import { getImcHistorial } from './imcService';
 
 interface ImcData {
   id: number;
@@ -16,21 +17,13 @@ const ImcDataComponent: React.FC = () => {
   const [error, setError] = useState<string>('');
   const [mostrarTabla, setMostrarTabla] = useState<boolean>(false);
 
-  // URL desde variables de entorno
-  const API_URL = `${import.meta.env.VITE_API_URL}imc/historial`;
-
   const obtenerTodosLosDatos = async () => {
     setLoading(true);
     setError('');
     
     try {
-      const response = await fetch(API_URL);
-      
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status} - ${response.statusText}`);
-      }
-      
-      const data = await response.json();
+      const data = await getImcHistorial();
+
       setDatos(data);
       setMostrarTabla(true);
       

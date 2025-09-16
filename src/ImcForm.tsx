@@ -1,10 +1,7 @@
-import axios from "axios";
 import React, { useState } from "react";
 import "./ImcForm.css"
 import { FormValidator } from "./FormValidator";
-
-const API_URL = import.meta.env.VITE_API_URL;
-console.log('API_URL:', API_URL);
+import { calculateImc } from "./imcService";
 
 interface ImcResult {
   id: number;
@@ -34,20 +31,20 @@ function ImcForm() {
       setResultado(null);
       return;
     };
-    
-    try {
-      const response = await axios.post(`${API_URL}imc/calcular`, {
-        altura: alturaNum,
-        peso: pesoNum,
-      });
 
-      console.log('Respuesta del backend:', response.data); // 👈 Agrega esto
-      setResultado(response.data);
+    try {
+      const data = await calculateImc(alturaNum, pesoNum);
+
+      console.log('Respuesta del backend:', data);
+
+      setResultado(data);
       setError("");
-    } catch (err) {
-      console.error('Error completo:', err); // 👈 Y esto también
+    } catch (err: any) {
+
+      console.error('Error completo:', err);
+
       setError(
-        "Error al calcular el IMC. Verifica si el backend está corriendo."
+        err.message || "Error inesperado al calcular el IMC."
       );
       setResultado(null);
     }
