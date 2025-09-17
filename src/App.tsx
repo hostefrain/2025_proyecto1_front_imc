@@ -1,6 +1,6 @@
-import Layout from './components/Layout'
-import ImcForm from './ImcForm'
-import ImcDataComponent from './ImcData'
+import Layout from './components/common/layout/Layout'
+import ImcForm from './components/imc/imcForm/ImcForm'
+import ImcDataComponent from './components/imc/imcData/ImcData'
 
 function App() {
 

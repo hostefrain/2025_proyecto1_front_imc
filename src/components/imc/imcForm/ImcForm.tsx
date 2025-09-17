@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./ImcForm.css"
 import { FormValidator } from "./FormValidator";
-import { calculateImc } from "./imcService";
+import { calculateImc } from "../../services/imcService";
 
 interface ImcResult {
   id: number;

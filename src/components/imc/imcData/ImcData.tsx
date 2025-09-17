@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './ImcData.css';
-import { getImcHistorial } from './imcService';
+import { getImcHistorial } from '../../services/imcService';
 
 interface ImcData {
   id: number;
@@ -16,7 +16,7 @@ const ImcDataComponent: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
   const [mostrarTabla, setMostrarTabla] = useState<boolean>(false);
-
+  
   const obtenerTodosLosDatos = async () => {
     setLoading(true);
     setError('');
@@ -24,7 +24,8 @@ const ImcDataComponent: React.FC = () => {
     try {
       const data = await getImcHistorial();
 
-      setDatos(data);
+      // Verificar que data no sea undefined o null
+      setDatos(data || []);
       setMostrarTabla(true);
       
     } catch (err) {
@@ -96,16 +97,16 @@ const ImcDataComponent: React.FC = () => {
         </div>
       )}
 
-      {mostrarTabla && !loading && datos.length === 0 && (
+      {mostrarTabla && !loading && datos && datos.length === 0 && (
         <div className="no-data-message">
           <p>📊 No hay datos guardados en la base de datos</p>
         </div>
       )}
 
-      {mostrarTabla && datos.length > 0 && (
+      {mostrarTabla && datos && datos.length > 0 && (
         <div className="tabla-container">
           <h3 className="tabla-titulo">
-            📋 Historial de Cálculos IMC ({datos.length} registros)
+            📋 Historial de Cálculos IMC ({datos?.length || 0} registros)
           </h3>
           
           <div className="tabla-wrapper">
