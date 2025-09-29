@@ -4,9 +4,6 @@ import { FormValidator } from "./FormValidator";
 import { calculateImc } from "../../services/imcService";
 
 interface ImcResult {
-  id: number;
-  altura: number;
-  peso: number;
   imcValor: number;
   categoria: string;
   fechaHora: Date;
@@ -39,9 +36,6 @@ function ImcForm() {
 
       // Adaptamos la respuesta al tipo ImcResult
       setResultado({
-        id: data.id ?? 0,
-        altura: alturaNum,
-        peso: pesoNum,
         imcValor: data.imc ?? data.imcValor,
         categoria: data.categoria,
         fechaHora: data.fechaHora ?? new Date(),
