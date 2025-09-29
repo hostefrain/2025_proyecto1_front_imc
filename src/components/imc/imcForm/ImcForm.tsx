@@ -84,9 +84,6 @@ function ImcForm() {
 
         {resultado && (
           <div className="result-container">
-            <p className="result-title">Id: {resultado.id}</p>
-            <p className="result-title">altura: {resultado.altura}</p>
-            <p className="result-title">peso: {resultado.peso}</p>
             <p className="result-title">IMC: {resultado?.imcValor !== undefined ? resultado.imcValor.toFixed(2) : "--"}</p>
             <p className="result-title">Categoría: {resultado.categoria}</p>
             <p className="result-title">
