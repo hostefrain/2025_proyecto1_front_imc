@@ -37,7 +37,15 @@ function ImcForm() {
 
       console.log('Respuesta del backend:', data);
 
-      setResultado(data);
+      // Adaptamos la respuesta al tipo ImcResult
+      setResultado({
+        id: data.id ?? 0,
+        altura: alturaNum,
+        peso: pesoNum,
+        imcValor: data.imc ?? data.imcValor,
+        categoria: data.categoria,
+        fechaHora: data.fechaHora ?? new Date(),
+      });
       setError("");
     } catch (err: any) {
 
@@ -79,7 +87,7 @@ function ImcForm() {
             <p className="result-title">Id: {resultado.id}</p>
             <p className="result-title">altura: {resultado.altura}</p>
             <p className="result-title">peso: {resultado.peso}</p>
-            <p className="result-title">IMC: {resultado.imcValor.toFixed(2)}</p>
+            <p className="result-title">IMC: {resultado?.imcValor !== undefined ? resultado.imcValor.toFixed(2) : "--"}</p>
             <p className="result-title">Categoría: {resultado.categoria}</p>
             <p className="result-title">
               Fecha: {new Date(resultado.fechaHora).toLocaleDateString('es-AR')}

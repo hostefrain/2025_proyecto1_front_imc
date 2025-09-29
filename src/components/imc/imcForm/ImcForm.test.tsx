@@ -62,7 +62,9 @@ describe("ImcForm", () => {
     fireEvent.click(boton);
 
     // esperamos el resultado renderizado
-    const resultado = await screen.findByText(/22.86/i);
+    const resultado = await screen.findByText((content) =>
+  content.includes("22.86"));
+
     const categoria = await screen.findByText(/Normal/i);
 
     expect(resultado).toBeTruthy();

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './ImcData.css';
 import { getImcHistorial } from '../../services/imcService';
+import Dashboard from '../imcDashboard/Dashboard';
 
 interface ImcData {
   id: number;
@@ -16,15 +17,15 @@ const ImcDataComponent: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
   const [mostrarTabla, setMostrarTabla] = useState<boolean>(false);
+  const [mostrarDashboard, setMostrarDashboard] = useState<boolean>(false); // Nuevo estado
   
   const obtenerTodosLosDatos = async () => {
     setLoading(true);
     setError('');
+    setMostrarDashboard(false); // Ocultar dashboard si está visible
     
     try {
       const data = await getImcHistorial();
-
-      // Verificar que data no sea undefined o null
       setDatos(data || []);
       setMostrarTabla(true);
       
@@ -40,6 +41,16 @@ const ImcDataComponent: React.FC = () => {
     setMostrarTabla(false);
   };
 
+  const mostrarEstadisticas = () => {
+    setMostrarDashboard(true);
+    setMostrarTabla(false); // Ocultar tabla si está visible
+    setError(''); // Limpiar errores
+  };
+
+  const ocultarDashboard = () => {
+    setMostrarDashboard(false);
+  };
+  
   const formatearFecha = (fecha: string) => {
     return new Date(fecha).toLocaleString('es-ES', {
       year: 'numeric',
@@ -80,6 +91,13 @@ const ImcDataComponent: React.FC = () => {
         >
           {loading ? 'Cargando...' : 'Mostrar Historial de IMC'}
         </button>
+
+        <button 
+          className="btn-estadisticas"
+          onClick={mostrarEstadisticas}
+        >
+          📊 Estadísticas
+        </button>
         
         {mostrarTabla && (
           <button 
@@ -87,6 +105,15 @@ const ImcDataComponent: React.FC = () => {
             onClick={ocultarTabla}
           >
             Ocultar Tabla
+          </button>
+        )}
+
+        {mostrarDashboard && (
+          <button 
+            className="btn-ocultar"
+            onClick={ocultarDashboard}
+          >
+            Ocultar Estadísticas
           </button>
         )}
       </div>
@@ -137,6 +164,15 @@ const ImcDataComponent: React.FC = () => {
               </tbody>
             </table>
           </div>
+        </div>
+      )}
+
+      {mostrarDashboard && (
+        <div className="dashboard-container">
+          <h3 className="dashboard-titulo">
+            📊 Estadísticas y Dashboard
+          </h3>
+          <Dashboard />
         </div>
       )}
     </div>
